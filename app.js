@@ -1,3 +1,4 @@
+require('dotenv').congig()
 // const createError = require('http-errors');
 const express = require('express');
 // const path = require('path');
@@ -8,6 +9,42 @@ const bodyParser = require('body-parser');
 
 const app = express();
 const port = process.env.PORT || 8080;
+const mongoose = require('mongoose');
+const session = require('express-session')
+const flash = require('express-flash')
+const MongoDBStore = require('connect-mongo')(session);   //for storing sessions - helps in automatically deleteing the session data from database
+
+//Database connection
+const url = 
+mongoose.connect(url, {
+  useNewUrlParse:true,
+  useCreateIndex:true,
+  useUnifiedTopology:true,
+  useFindAndModify:true
+});
+const connection = mongoose.connection;
+connection.once('open',() =>{
+  console.log('Database connected...');
+}).catch(err=>{
+  console.log('Database connection failed...');
+});
+
+//Session Storage connec
+const mongoStore = new MongoDBStore({
+  mongooseConnection: connection,
+  collection:'sessions'
+})
+
+// Session  Configuration
+app.use(session({
+  secret:process.env.COOKIE_SECRET,
+  resave: false,
+  saveUninitialized:false,
+  store:mongoStore,
+  cookie: {maxAge: 1000*60*60*24} //24 hrs
+}))
+
+app.use(flash());
 
 //Middlewares
 app.use(bodyParser.json());

@@ -1,7 +1,14 @@
+const Menu = require('./../../models/menu');
+
 function homeController(){  //factory functions
     return {
-        index(req,res){
-            res.send("Hello...123");
+        //fetch the data
+        async index(req,res){
+            const pizzaMenu =  await Menu.find()
+            console.log(`Pizza Menu fetched...${pizzaMenu}`);
+            return res.send('home',()=>{
+                
+            });
         }
     }
 }

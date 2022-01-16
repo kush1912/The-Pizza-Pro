@@ -5,6 +5,9 @@
 + factory functions - concept is available in almost all the languages
  - javascript has benefits of closures
  - Its a Object creational factory pattern in simple words. A normal function which returns an Object.
+
+
+ + Sessions and Cookies Notes
   
 
 + Errors where I got Stuck
