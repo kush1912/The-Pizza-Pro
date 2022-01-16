@@ -1,0 +1,22 @@
++ Do not use res.render() If in case we are not using View Engine, we should use res.json() or something like that.
+
++ In javascript variables are passed by reference
+
++ factory functions - concept is available in almost all the languages
+ - javascript has benefits of closures
+ - Its a Object creational factory pattern in simple words. A normal function which returns an Object.
+  
+
++ Errors where I got Stuck
+---------------------------------
+1. Port 3000 was not in use, still it showed message of being used
+ - checked from resource monitor
+ - Solution was to kill the Process at 3000 Port
+ -  Command: npx kill-port 3000
+
+Additional Features
+---------------------------------
++ Download Invoice
++ Login through Gmail & facebook
++ Order Summary
++ Tracking through Map  - Leaflet.js
