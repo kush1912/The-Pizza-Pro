@@ -23,3 +23,8 @@ Additional Features
 + Login through Gmail & facebook
 + Order Summary
 + Tracking through Map  - Leaflet.js
++ Search bar for products
++ ratings for products
++ Comments
++ Sales and Statistics Real-World for Admins
+
