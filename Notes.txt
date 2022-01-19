@@ -8,7 +8,12 @@
 
 
  + Sessions and Cookies Notes
-  
+    - By default sessions are not available in the front-end side 
+    - Solution: Global Middleware    
+
+  + Difference between Express.json() and body-parser.json
+
++ Added Notification - noty front-end side
 
 + Errors where I got Stuck
 ---------------------------------

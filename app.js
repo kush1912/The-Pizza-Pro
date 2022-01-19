@@ -12,7 +12,8 @@ const port = process.env.PORT || 8080;
 const mongoose = require('mongoose');
 const session = require('express-session')
 const flash = require('express-flash')
-const MongoDBStore = require('connect-mongo')(session);   //for storing sessions - helps in automatically deleteing the session data from database
+const MongoDBStore = require('connect-mongo');   //for storing sessions - helps in automatically deleteing the session data from database
+MongoDBStore(session);
 
 //Database connection
 const url = 
@@ -31,8 +32,9 @@ connection.once('open',() =>{
 
 //Session Storage connec
 const mongoStore = new MongoDBStore({
-  mongooseConnection: connection,
-  collection:'sessions'
+  mongooseConnection: connection,    
+  collection:'sessions',   // a Collection named sessions will be created in the database
+
 })
 
 // Session  Configuration
@@ -40,7 +42,7 @@ app.use(session({
   secret:process.env.COOKIE_SECRET,
   resave: false,
   saveUninitialized:false,
-  store:mongoStore,
+  store:mongoStore,   //if we don't provide the storeage, then it will do it in the main memory
   cookie: {maxAge: 1000*60*60*24} //24 hrs
 }))
 
@@ -53,9 +55,15 @@ app.use(bodyParser.json());
 const routes = require('./routes/web') //routes receive the function created at web.js
 routes(app);  // we are calling the function inside web.js which will execute the whole code. Here we are also passing the intance of express() stored in app.
 
+//Setting up global middlewares for using sessions.  
+app.use((req,res,next)=>{
+  res.locals.session = req.session;
+  next();
+})
+
 
 // app.use(logger('dev'));
-// app.use(express.json())
+app.use(express.json())
 // //app.use(express.urlencoded({ extended: false }));
 // app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
