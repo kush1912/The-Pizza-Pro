@@ -64,7 +64,7 @@ app.use((req,res,next)=>{
 
 // app.use(logger('dev'));
 app.use(express.json())
-// //app.use(express.urlencoded({ extended: false }));
+app.use(express.urlencoded({ extended: false }));   //this tells express that the request coming will be urlEncoded, else empty object will be passed;
 // app.use(cookieParser());
 // app.use(express.static(path.join(__dirname, 'public')));
 
