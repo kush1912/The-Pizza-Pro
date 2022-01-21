@@ -14,6 +14,7 @@ const session = require('express-session')
 const flash = require('express-flash')
 const MongoDBStore = require('connect-mongo');   //for storing sessions - helps in automatically deleteing the session data from database
 MongoDBStore(session);
+const passport =  require('passport');
 
 //Database connection
 const url = 
@@ -30,12 +31,18 @@ connection.once('open',() =>{
   console.log('Database connection failed...');
 });
 
-//Session Storage connec
+//Session Storage connection
 const mongoStore = new MongoDBStore({
   mongooseConnection: connection,    
   collection:'sessions',   // a Collection named sessions will be created in the database
 
 })
+
+// Passport Config
+const passportInit = require('./config/passport');
+passportInit(passport);
+app.use(passport.initialize())
+app.use(passport.session())
 
 // Session  Configuration
 app.use(session({

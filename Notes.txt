@@ -15,6 +15,16 @@
 
 + Added Notification - noty front-end side
 
+
+
++ bcrypt for hjasing the password
+
+
++ Passport.js  -  
+  + authentication 
+  + google Login
+  + facebook Login
+
 + Errors where I got Stuck
 ---------------------------------
 1. Port 3000 was not in use, still it showed message of being used
@@ -33,3 +43,7 @@ Additional Features
 + Comments
 + Sales and Statistics Real-World for Admins
 
++ Automatic Logging in when user registers
+
+
++ Separate the messages in a different file
