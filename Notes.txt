@@ -45,5 +45,6 @@ Additional Features
 
 + Automatic Logging in when user registers
 
++ If the user is logged in - show logout
 
 + Separate the messages in a different file

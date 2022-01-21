@@ -38,12 +38,6 @@ const mongoStore = new MongoDBStore({
 
 })
 
-// Passport Config
-const passportInit = require('./config/passport');
-passportInit(passport);
-app.use(passport.initialize())
-app.use(passport.session())
-
 // Session  Configuration
 app.use(session({
   secret:process.env.COOKIE_SECRET,
@@ -52,6 +46,12 @@ app.use(session({
   store:mongoStore,   //if we don't provide the storeage, then it will do it in the main memory
   cookie: {maxAge: 1000*60*60*24} //24 hrs
 }))
+
+// Passport Config - should be done after session confioguration
+const passportInit = require('./config/passport');
+passportInit(passport);
+app.use(passport.initialize())
+app.use(passport.session())
 
 app.use(flash());
 
@@ -65,6 +65,7 @@ routes(app);  // we are calling the function inside web.js which will execute th
 //Setting up global middlewares for using sessions.  
 app.use((req,res,next)=>{
   res.locals.session = req.session;
+  res.locals.user = req.user;
   next();
 })
 
