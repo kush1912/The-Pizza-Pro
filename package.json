@@ -15,6 +15,7 @@
     "express-flash": "^0.0.2",
     "http-errors": "~1.6.3",
     "jade": "^0.31.2",
+    "moment": "^2.29.1",
     "mongoose": "^6.1.6",
     "morgan": "~1.9.1",
     "nodemon": "^2.0.15",

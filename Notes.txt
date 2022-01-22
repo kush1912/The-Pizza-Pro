@@ -19,6 +19,7 @@
 
 + bcrypt for hjasing the password
 
++ moment.js for time formatting. Learn how to use in react
 
 + Passport.js  -  
   + authentication 
@@ -48,3 +49,9 @@ Additional Features
 + If the user is logged in - show logout
 
 + Separate the messages in a different file
+
++ Make All Orders Page in React
+
++ Orders should have an active status,
+  - cancelled and completed orders should not be visible to Admin
+  
