@@ -18,8 +18,11 @@ function initRoutes(app){
   app.post('/login',authController().postLogin);
   app.post('/register',authController().postRegister);
   app.post('/update-cart', cartController().update);
-  app.post('/orders', orderController().store);
   app.post('/logout', authController().logout);
+
+  //Customer Routes
+  app.post('/orders', orderController().store);
+  app.get('customers/order', orderController().index);
 }
 
 module.exports = initRoutes

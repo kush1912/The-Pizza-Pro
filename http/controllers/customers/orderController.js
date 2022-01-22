@@ -1,6 +1,13 @@
 const Order = require('./../../../models/order');
 function orderController(){
     return {
+        async index(req, res){
+            const orders =  await Order.find({customerId:req.user._id})
+            res.send('customer/Orders', {orders:orders})  //send it to front-end.
+            console.log(orders);
+
+        },
+
         store(Req,res){
             //  console.log(`Order: ${req.body}`);
             //Validate Request
