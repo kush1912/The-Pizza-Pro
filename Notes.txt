@@ -55,3 +55,25 @@ Additional Features
 + Orders should have an active status,
   - cancelled and completed orders should not be visible to Admin
   
+  
+  
+    Standard Packages required for Nodejs App
+
+- npm init
+- Cors , body-parser, passport
+
+
+  
+  Express-Session
+  ----------------
+Resources: Zach Gollwitzer
+Authentication Options(complexity increases as we go down) 
+1.  sessions
+2. JSON Web Tokens
+3. OAuth 
+	- In-House 
+	- Saas
+4. Other/Adhoc
+
+  
+  
