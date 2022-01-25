@@ -8,9 +8,9 @@ const orderScehema  = new Schema({
                     required:true
                 },
     items: {type:Object, required:true}, 
-    phone: {type:string,required:true},
+    phone: {type:Number,required:true},
     address: {type:String, required: true},
-    paymentType: {type:string, default:'COD'},
+    paymentType: {type:String, default:'COD'},
     status: {type:String, default:'order-placed'},
 },{timestamps:true})  
 

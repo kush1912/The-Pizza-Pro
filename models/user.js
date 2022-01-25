@@ -4,7 +4,7 @@ const Schema = mongoose.Schema
 const userScehema  = new Schema({
     name: {type:String, required:true},
     email: {type:String, required:true, unique:true}, 
-    password: {type:string,required:true},
+    password: {type:String,required:true},
     role: {type:String, default:'customer'}
 },{timestamps:true})  
 // time stamps will store the data when user registerd and loggedin

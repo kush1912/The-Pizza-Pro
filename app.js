@@ -1,4 +1,4 @@
-require('dotenv').congig()
+require('dotenv').config()
 // const createError = require('http-errors');
 const express = require('express');
 // const path = require('path');
@@ -12,38 +12,38 @@ const port = process.env.PORT || 8080;
 const mongoose = require('mongoose');
 const session = require('express-session')
 const flash = require('express-flash')
-const MongoDBStore = require('connect-mongo');   //for storing sessions - helps in automatically deleteing the session data from database
-MongoDBStore(session);
+const MongoStore = require('connect-mongo'); //for storing sessions - helps in automatically deleteing the session data from database
+// const MongoDBSore  = new MongoDBStore(session);
 const passport =  require('passport');
 
 //Database connection
-const url = 
+const url =  'mongodb://localhost/The-Pizza-Pro';
 mongoose.connect(url, {
-  useNewUrlParse:true,
-  useCreateIndex:true,
-  useUnifiedTopology:true,
-  useFindAndModify:true
+  useNewUrlParser: true, 
+  useUnifiedTopology: true 
 });
 const connection = mongoose.connection;
+// console.log(connection); 
+// With connection once-on are used instead of then-catch block 
 connection.once('open',() =>{
   console.log('Database connected...');
-}).catch(err=>{
-  console.log('Database connection failed...');
+}).on('error',(err)=>{
+  console.log(`Database connection failed...${err}`);
 });
 
 //Session Storage connection
-const mongoStore = new MongoDBStore({
-  mongooseConnection: connection,    
-  collection:'sessions',   // a Collection named sessions will be created in the database
+// const mongoStore = new MongoDBStore({
+//   mongooseConnection: connection,    
+//   collection:'sessions',   // a Collection named sessions will be created in the database
 
-})
+// })
 
 // Session  Configuration
 app.use(session({
   secret:process.env.COOKIE_SECRET,
   resave: false,
   saveUninitialized:false,
-  store:mongoStore,   //if we don't provide the storeage, then it will do it in the main memory
+  store: MongoStore.create({ mongoUrl: url }),   //if we don't provide the storage, then it will do it in the main memory
   cookie: {maxAge: 1000*60*60*24} //24 hrs
 }))
 

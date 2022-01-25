@@ -1,5 +1,5 @@
 const User = require('./../../models/user');
-const bcrypt = require('bcrypyt');
+const bcrypt = require('bcrypt');
 const passport = require('passport');
 
 function authController(){
