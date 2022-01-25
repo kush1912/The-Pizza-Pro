@@ -6,9 +6,7 @@ function homeController(){  //factory functions
         async index(req,res){
             const pizzaMenu =  await Menu.find()
             console.log(`Pizza Menu fetched...${pizzaMenu}`);
-            return res.send('home',()=>{
-                
-            });
+            return res.json({pizzaMenu});
         }
     }
 }

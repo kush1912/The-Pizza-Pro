@@ -7,6 +7,7 @@ function authController(){
         login(req, res){
             res.send('auth/login')
         },
+        
         postLogin(req,res, next){
             passport.authenticate('local', (err, user, info)=>{
                 if(err){
@@ -33,13 +34,14 @@ function authController(){
         },
 
         async postRegister(req, res){
+            console.log(req);
             const {name, email, password} = req.body;
             //Validate request
             if(!name || !email || !password){
                 req.flash('error','All fields are required')
                 req.flash('name', name);
                 req.flash('email',  email);
-                return res.redirect('/register')
+                //return res.redirect('/register')
             }
 
             //check if email exists
@@ -48,7 +50,7 @@ function authController(){
                     req.flash('error', 'Email already registered!');
                     req.flash('name', name);
                     req.flash('email', email);
-                    return res.redirect('/register') // response 
+                    //return res.redirect('/register') // response 
                 }
             })
 
