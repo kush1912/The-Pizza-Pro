@@ -49,9 +49,9 @@ app.use(session({
 
 // Passport Config - should be done after session confioguration
 const passportInit = require('./config/passport');
-passportInit(passport);
-app.use(passport.initialize())
-app.use(passport.session())
+app.use(passport.initialize())  // Initialise the passport
+app.use(passport.session()) // session initialized
+passportInit(passport);  // The same instance is passed.
 
 app.use(flash());
 

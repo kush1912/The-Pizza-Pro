@@ -10,6 +10,7 @@ function init(passport){
         //Login
         //Check if email exists
         const user = await User.findOne({email:email})
+        if(err) throw err;
         if(!user){
             return done(null, false, {message: 'No user registered with this email!'})
         } 
@@ -24,10 +25,12 @@ function init(passport){
         })
     }));
 
+    //Stores a cookie inside a browser
     passport.serializeUser((user, done)=>{
         done(null, user._id);
     })
 
+    // takes that cookie and unravels it
     passport.deserializeUser((id,done)=>{
         User.findById(id,(err, user)=>{
             done(err, user);

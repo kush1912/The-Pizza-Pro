@@ -25,8 +25,8 @@ function authController(){
                     }
                     
                     return res.redirect('/');
-                })(req, res, next) // passport return a function 
-            })
+                })
+            })(req, res, next) // passport return a function 
         },
         
         register(req, res){

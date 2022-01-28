@@ -21,10 +21,16 @@
 
 + moment.js for time formatting. Learn how to use in react
 
-+ Passport.js  -  
++ Passport.js  -  alternatives(Firebase)
   + authentication 
   + google Login
   + facebook Login
+
+ -  Inside passport.js serialize and deserialize we can, restrict the data being sent back to the front-end(instead of sending the whole user object we can send just username.)
+
+ - Once authenticated, the user is stored in the req.user object. 
+ - The req object you get from the client now has a user object inside of ity anmd contains all of the session data. This can be ised and called absolutelt any time and anywhere in the application.
+
 
 + Errors where I got Stuck
 ---------------------------------
